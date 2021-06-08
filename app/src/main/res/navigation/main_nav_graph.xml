@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="ru.android.hyrulecompendiummvvm.presentation.home.HomeFragment"
+        android:name="ru.android.hyrulecompendiumanothermvvm.presentation.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/hyruleFragment"
-        android:name="ru.android.hyrulecompendiummvvm.presentation.category.CategoryFragment"
+        android:name="ru.android.hyrulecompendiumanothermvvm.presentation.category.CategoryFragment"
         android:label="HyruleFragment"
         tools:layout="@layout/fragment_category">
         <argument

@@ -30,7 +30,7 @@ class InfoBottomSheet : BottomSheetDialogFragment() {
     }
 
     private val hyruleData by lazy {
-        requireArguments().getSerializable(ARG_HYRULE_DATA) as? HyruleData
+        requireArguments().getSerializable(ARG_HYRULE_DATA) as HyruleData
     }
 
     override fun getTheme(): Int {
@@ -46,16 +46,16 @@ class InfoBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        when (hyruleData?.category) {
+        when (hyruleData.category) {
             "equipment" -> {
-                attackText.text = hyruleData?.attack.toString()
-                defenseText.text = hyruleData?.defense.toString()
+                attackText.text = hyruleData.attack.toString()
+                defenseText.text = hyruleData.defense.toString()
             }
             else -> linearLayout.isGone = true
         }
-        hyruleData?.name?.let { nameText.text = it }
-        hyruleData?.category?.let { categoryText.text = it }
-        hyruleData?.description?.let { descriptionText.text = it }
+        hyruleData.name?.let { nameText.text = it }
+        hyruleData.category?.let { categoryText.text = it }
+        hyruleData.description?.let { descriptionText.text = it }
     }
 
 }

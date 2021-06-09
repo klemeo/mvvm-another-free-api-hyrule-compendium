@@ -72,11 +72,7 @@ class CategoryFragment : Fragment() {
 
     private fun showDialog(data: HyruleData) {
         InfoBottomSheet.newInstance(
-            name = data.name,
-            category = data.category,
-            description = data.description,
-            attack = data.attack,
-            defense = data.defense
+            data = data
         ).show(childFragmentManager, InfoBottomSheet.TAG)
     }
 

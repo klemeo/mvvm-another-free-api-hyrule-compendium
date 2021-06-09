@@ -4,60 +4,33 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottom_sheet_fragment.*
 import ru.android.hyrulecompendiumanothermvvm.R
-import ru.android.hyrulecompendiumanothermvvm.base.args
+import ru.android.hyrulecompendiumanothermvvm.domain.models.HyruleData
 
 class InfoBottomSheet : BottomSheetDialogFragment() {
 
     companion object {
 
         fun newInstance(
-            name: String? = null,
-            category: String? = null,
-            description: String? = null,
-            attack: Int? = null,
-            defense: Int? = null
-        ) = InfoBottomSheet().args {
-
-            name?.let { putString(ARG_NAME, it) }
-            category?.let { putString(ARG_CATEGORY, it) }
-            description?.let { putString(ARG_DESCRIPTION, it) }
-            attack?.let { putInt(ARG_ATTACK, it) }
-            defense?.let { putInt(ARG_DEFENSE, it) }
-
+            data: HyruleData
+        ): InfoBottomSheet = InfoBottomSheet().apply {
+            arguments = bundleOf(
+                ARG_HYRULE_DATA to data
+            )
         }
 
         const val TAG = "InfoBottomSheet"
 
-        private const val ARG_NAME = "ARG_NAME"
-        private const val ARG_CATEGORY = "ARG_CATEGORY"
-        private const val ARG_DESCRIPTION = "ARG_DESCRIPTION"
-        private const val ARG_ATTACK = "ARG_ATTACK"
-        private const val ARG_DEFENSE = "ARG_DEFENSE"
+        private const val ARG_HYRULE_DATA = "ARG_HYRULE_DATA"
 
     }
 
-    private val name by lazy {
-        arguments?.getString(ARG_NAME)
-    }
-
-    private val category by lazy {
-        arguments?.getString(ARG_CATEGORY)
-    }
-
-    private val description by lazy {
-        arguments?.getString(ARG_DESCRIPTION)
-    }
-
-    private val attack by lazy {
-        arguments?.getInt(ARG_ATTACK).toString()
-    }
-
-    private val defense by lazy {
-        arguments?.getInt(ARG_DEFENSE).toString()
+    private val hyruleData by lazy {
+        requireArguments().getSerializable(ARG_HYRULE_DATA) as? HyruleData
     }
 
     override fun getTheme(): Int {
@@ -73,16 +46,16 @@ class InfoBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        when (category) {
+        when (hyruleData?.category) {
             "equipment" -> {
-                attackText.text = attack
-                defenseText.text = defense
+                attackText.text = hyruleData?.attack.toString()
+                defenseText.text = hyruleData?.defense.toString()
             }
             else -> linearLayout.isGone = true
         }
-        name?.let { nameText.text = it }
-        category?.let { categoryText.text = it }
-        description?.let { descriptionText.text = it }
+        hyruleData?.name?.let { nameText.text = it }
+        hyruleData?.category?.let { categoryText.text = it }
+        hyruleData?.description?.let { descriptionText.text = it }
     }
 
 }

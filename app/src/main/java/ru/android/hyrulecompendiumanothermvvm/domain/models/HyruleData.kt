@@ -1,5 +1,7 @@
 package ru.android.hyrulecompendiumanothermvvm.domain.models
 
+import java.io.Serializable
+
 data class HyruleData(
     val id: Int?,
     val category: String?,
@@ -12,4 +14,4 @@ data class HyruleData(
     val drops: List<String>?,
     val cookingEffect: String?,
     val heartsRecovered: Double?
-)
+) : Serializable

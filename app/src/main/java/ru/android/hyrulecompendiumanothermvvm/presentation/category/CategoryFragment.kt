@@ -21,7 +21,13 @@ class CategoryFragment : Fragment() {
     private val navArgs by navArgs<CategoryFragmentArgs>()
 
     private val categoryAdapter = CategoryAdapter(HyruleListener {
-
+        InfoBottomSheet.newInstance(
+            name = it.name,
+            category = it.category,
+            description = it.description,
+            attack = it.attack,
+            defense = it.defense
+        ).show(childFragmentManager, InfoBottomSheet.TAG)
     })
 
     override fun onCreateView(

@@ -40,6 +40,26 @@ class InfoBottomSheet : BottomSheetDialogFragment() {
 
     }
 
+    private val name by lazy {
+        arguments?.getString(ARG_NAME)
+    }
+
+    private val category by lazy {
+        arguments?.getString(ARG_CATEGORY)
+    }
+
+    private val description by lazy {
+        arguments?.getString(ARG_DESCRIPTION)
+    }
+
+    private val attack by lazy {
+        arguments?.getInt(ARG_ATTACK).toString()
+    }
+
+    private val defense by lazy {
+        arguments?.getInt(ARG_DEFENSE).toString()
+    }
+
     override fun getTheme(): Int {
         return R.style.CustomBottomSheetDialog
     }
@@ -53,16 +73,16 @@ class InfoBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        when (arguments?.getString(ARG_CATEGORY)) {
+        when (category) {
             "equipment" -> {
-                attackText.text = arguments?.getInt(ARG_ATTACK).toString()
-                defenseText.text = arguments?.getInt(ARG_DEFENSE).toString()
+                attackText.text = attack
+                defenseText.text = defense
             }
             else -> linearLayout.isGone = true
         }
-        arguments?.getString(ARG_NAME)?.let { nameText.text = it }
-        arguments?.getString(ARG_CATEGORY)?.let { categoryText.text = it }
-        arguments?.getString(ARG_DESCRIPTION)?.let { descriptionText.text = it }
+        name?.let { nameText.text = it }
+        category?.let { categoryText.text = it }
+        description?.let { descriptionText.text = it }
     }
 
 }

@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_category.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.android.hyrulecompendiumanothermvvm.R
 import ru.android.hyrulecompendiumanothermvvm.databinding.FragmentCategoryBinding
+import ru.android.hyrulecompendiumanothermvvm.domain.models.HyruleData
 
 class CategoryFragment : Fragment() {
 
@@ -21,13 +22,7 @@ class CategoryFragment : Fragment() {
     private val navArgs by navArgs<CategoryFragmentArgs>()
 
     private val categoryAdapter = CategoryAdapter(HyruleListener {
-        InfoBottomSheet.newInstance(
-            name = it.name,
-            category = it.category,
-            description = it.description,
-            attack = it.attack,
-            defense = it.defense
-        ).show(childFragmentManager, InfoBottomSheet.TAG)
+        showDialog(it)
     })
 
     override fun onCreateView(
@@ -73,6 +68,16 @@ class CategoryFragment : Fragment() {
                 pbPost.isGone = true
             }
         })
+    }
+
+    private fun showDialog(data: HyruleData) {
+        InfoBottomSheet.newInstance(
+            name = data.name,
+            category = data.category,
+            description = data.description,
+            attack = data.attack,
+            defense = data.defense
+        ).show(childFragmentManager, InfoBottomSheet.TAG)
     }
 
 }

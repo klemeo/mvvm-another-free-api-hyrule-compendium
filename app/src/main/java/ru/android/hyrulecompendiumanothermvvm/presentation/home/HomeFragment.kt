@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_home.*
 import ru.android.hyrulecompendiumanothermvvm.R
 import ru.android.hyrulecompendiumanothermvvm.base.FragmentListenerUtils
 import ru.android.hyrulecompendiumanothermvvm.databinding.FragmentHomeBinding
@@ -37,22 +37,33 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    private var monstersButton: Button? = null
+    private var treasureButton: Button? = null
+    private var materialsButton: Button? = null
+    private var equipmentButton: Button? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        with(view) {
+            monstersButton = findViewById(R.id.monstersButton)
+            treasureButton = findViewById(R.id.treasureButton)
+            materialsButton = findViewById(R.id.materialsButton)
+            equipmentButton = findViewById(R.id.equipmentButton)
+        }
+
         initView()
     }
 
     private fun initView() {
-        monstersButton.setOnClickListener {
+        monstersButton?.setOnClickListener {
             homeListener.openCategoryScreen("monsters")
         }
-        treasureButton.setOnClickListener {
+        treasureButton?.setOnClickListener {
             homeListener.openCategoryScreen("treasure")
         }
-        materialsButton.setOnClickListener {
+        materialsButton?.setOnClickListener {
             homeListener.openCategoryScreen("materials")
         }
-        equipmentButton.setOnClickListener {
+        equipmentButton?.setOnClickListener {
             homeListener.openCategoryScreen("equipment")
         }
     }

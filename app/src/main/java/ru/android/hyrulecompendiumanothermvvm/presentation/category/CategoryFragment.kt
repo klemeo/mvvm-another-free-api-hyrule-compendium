@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ProgressBar
 import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.android.synthetic.main.fragment_category.*
+import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.android.hyrulecompendiumanothermvvm.R
 import ru.android.hyrulecompendiumanothermvvm.databinding.FragmentCategoryBinding
@@ -41,8 +43,17 @@ class CategoryFragment : Fragment() {
     }
         .root
 
+    private var buttonBack: Button? = null
+    private var recyclerView: RecyclerView? = null
+    private var pbPost: ProgressBar? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        with(view) {
+            buttonBack = findViewById(R.id.buttonBack)
+            recyclerView = findViewById(R.id.recyclerView)
+            pbPost = findViewById(R.id.pbPost)
+        }
+
         initView()
         observeViewModel()
     }
@@ -50,13 +61,13 @@ class CategoryFragment : Fragment() {
     private fun initView() {
         viewModel.getCategory(navArgs.category)
 
-        with(recyclerView) {
+        recyclerView?.apply {
             val manager = GridLayoutManager(activity, 2)
             layoutManager = manager
             adapter = categoryAdapter
         }
-        buttonBack.setOnClickListener {
-            activity?.onBackPressed()
+        buttonBack?.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStack()
         }
 
     }
@@ -65,7 +76,7 @@ class CategoryFragment : Fragment() {
         viewModel.hyrule.observe(viewLifecycleOwner, {
             if (it != null) {
                 it.data?.let { data -> categoryAdapter.addHeaderAndSubmitList(data) }
-                pbPost.isGone = true
+                pbPost?.isGone = true
             }
         })
     }

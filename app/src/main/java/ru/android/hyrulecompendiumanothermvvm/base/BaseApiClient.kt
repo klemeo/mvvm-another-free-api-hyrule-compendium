@@ -1,6 +1,5 @@
 package ru.android.hyrulecompendiumanothermvvm.base
 
-import com.itkacher.okhttpprofiler.OkHttpProfilerInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -25,7 +24,6 @@ open class BaseApiClient<T>(private val classT: Class<T>) {
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(OkHttpProfilerInterceptor())
             .build()
 
         val retrofitBuilder = Retrofit.Builder().apply {

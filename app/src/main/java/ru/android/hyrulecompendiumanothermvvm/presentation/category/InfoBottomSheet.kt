@@ -4,10 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.bottom_sheet_fragment.*
 import ru.android.hyrulecompendiumanothermvvm.R
 import ru.android.hyrulecompendiumanothermvvm.domain.models.HyruleData
 
@@ -45,12 +46,19 @@ class InfoBottomSheet : BottomSheetDialogFragment() {
         inflater.inflate(R.layout.bottom_sheet_fragment, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        val nameText = view.findViewById<TextView>(R.id.nameText)
+        val categoryText = view.findViewById<TextView>(R.id.categoryText)
+        val linearLayout = view.findViewById<LinearLayout>(R.id.linearLayout)
+        val attackText = view.findViewById<TextView>(R.id.attackText)
+        val defenseText = view.findViewById<TextView>(R.id.defenseText)
+        val descriptionText = view.findViewById<TextView>(R.id.descriptionText)
+
         when (hyruleData.category) {
             "equipment" -> {
-                attackText.text = hyruleData.attack.toString()
-                defenseText.text = hyruleData.defense.toString()
+                attackText.text = hyruleData.properties?.attack.toString()
+                defenseText.text = hyruleData.properties?.defense.toString()
             }
+
             else -> linearLayout.isGone = true
         }
         hyruleData.name?.let { nameText.text = it }

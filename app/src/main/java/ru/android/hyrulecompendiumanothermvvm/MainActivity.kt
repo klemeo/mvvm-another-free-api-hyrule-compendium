@@ -2,6 +2,11 @@ package ru.android.hyrulecompendiumanothermvvm
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.activity.enableEdgeToEdge
+import androidx.core.graphics.Insets
+import androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener
+import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.findNavController
 import ru.android.hyrulecompendiumanothermvvm.presentation.MainActivityContract
 import ru.android.hyrulecompendiumanothermvvm.presentation.home.HomeFragmentDirections

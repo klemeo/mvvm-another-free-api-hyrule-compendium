@@ -9,9 +9,13 @@ data class HyruleData(
     val image: String?,
     val description: String?,
     val commonLocations: List<String>?,
-    val attack: Int?,
-    val defense: Int?,
+    val properties: Properties?,
     val drops: List<String>?,
     val cookingEffect: String?,
     val heartsRecovered: Double?
+) : Serializable
+
+class Properties(
+    val attack: Int?,
+    val defense: Int?,
 ) : Serializable

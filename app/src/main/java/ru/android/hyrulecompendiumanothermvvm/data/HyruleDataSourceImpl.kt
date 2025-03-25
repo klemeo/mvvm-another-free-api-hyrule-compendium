@@ -9,7 +9,7 @@ class HyruleDataSourceImpl : HyruleDataSource, RetrofitDataSource {
 
     override fun getHyruleCategory(category: String): HyruleInfo {
         val result = executeWithResponse {
-            HyruleApiClient.getApiClient().getCategory(category)
+            HyruleApiClient.getApiClient().getCompendiumCharacters(category)
         }
         return result.toDomain()
     }

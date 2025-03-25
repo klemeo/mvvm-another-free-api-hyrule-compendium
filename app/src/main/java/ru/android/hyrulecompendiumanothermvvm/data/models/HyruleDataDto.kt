@@ -15,14 +15,19 @@ data class HyruleDataDto(
     val description: String?,
     @SerializedName("common_locations")
     val commonLocations: List<String>?,
-    @SerializedName("attack")
-    val attack: Int?,
-    @SerializedName("defense")
-    val defense: Int?,
+    @SerializedName("properties")
+    val properties: PropertiesDto? = null,
     @SerializedName("drops")
     val drops: List<String>?,
     @SerializedName("cooking_effect")
     val cookingEffect: String?,
     @SerializedName("hearts_recovered")
     val heartsRecovered: Double?
+)
+
+class PropertiesDto(
+    @SerializedName("attack")
+    val attack: Int?,
+    @SerializedName("defense")
+    val defense: Int?,
 )

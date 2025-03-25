@@ -6,8 +6,8 @@ import ru.android.hyrulecompendiumanothermvvm.data.models.HyruleInfoDto
 
 interface ApiServices {
 
-    @GET("category/{category}")
-    fun getCategory(
+    @GET("compendium/category/{category}")
+    fun getCompendiumCharacters(
         @Path("category") category: String
     ): Call<HyruleInfoDto>
 

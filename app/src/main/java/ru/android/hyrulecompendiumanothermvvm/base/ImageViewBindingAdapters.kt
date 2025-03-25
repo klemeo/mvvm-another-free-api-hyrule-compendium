@@ -25,7 +25,7 @@ fun ImageView.setImageFitPlaceholderWithGlide(
             override fun onLoadFailed(
                 e: GlideException?,
                 model: Any?,
-                target: Target<Drawable>?,
+                target: Target<Drawable>,
                 isFirstResource: Boolean
             ): Boolean {
                 scaleType = ImageView.ScaleType.MATRIX
@@ -33,15 +33,17 @@ fun ImageView.setImageFitPlaceholderWithGlide(
             }
 
             override fun onResourceReady(
-                resource: Drawable?,
-                model: Any?,
-                target: Target<Drawable>?,
-                dataSource: DataSource?,
+                resource: Drawable,
+                model: Any,
+                target: Target<Drawable>,
+                dataSource: DataSource,
                 isFirstResource: Boolean
             ): Boolean {
                 scaleType = ImageView.ScaleType.CENTER_CROP
                 return false
             }
+
+
         })
         .into(this)
 }

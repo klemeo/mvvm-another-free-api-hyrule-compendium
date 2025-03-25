@@ -10,12 +10,6 @@ import ru.android.hyrulecompendiumanothermvvm.presentation.category.CategoryView
 
 private val allModules = module {
 
-    viewModel {
-        CategoryViewModel(
-            hyruleInteractor = get()
-        )
-    }
-
     single<HyruleDataSource> {
         HyruleDataSourceImpl()
     }
@@ -23,6 +17,12 @@ private val allModules = module {
     single<HyruleInteractor> {
         HyruleInteractorImpl(
             hyruleDataSource = get()
+        )
+    }
+
+    viewModel {
+        CategoryViewModel(
+            hyruleInteractor = get()
         )
     }
 

@@ -27,7 +27,7 @@ open class BaseApiClient<T>(private val classT: Class<T>) {
             .build()
 
         val retrofitBuilder = Retrofit.Builder().apply {
-            baseUrl(BuildConfig.URL_SERVER)
+            baseUrl("https://botw-compendium.herokuapp.com/api/v2/")
             client(okHttpClient)
             addConverterFactory(GsonConverterFactory.create())
         }
